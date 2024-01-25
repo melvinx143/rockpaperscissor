@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROCK PAPER SCISSOR</title>
+</head>
+<style>
+    .content_body
+    {
+        display:flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        background:transparent;
+        padding:20px;
+        margin-top:5rem;
+    }
+    *
+    {
+        margin:0;
+    }
+    .buttons
+    {
+margin-top:20px;
+margin-bottom: 40px;
+    }
+    #rock,#paper,#scissor
+    {
+        padding:15px;
+        margin:10px;
+        width:100px;
+        border-radius: 22px;
+        border:none;
+        box-shadow:12px 12px 12px grey;
+        font-weight: bold;
+        font-family: serif;
+        cursor:pointer;
+}
+#rock:hover,#paper:hover,#scissor:hover{
+    color:white;
+    background-color: black;
+}
+.scoring
+{
+    margin-top:40px;
+}
+#nav
+{
+    text-align: center;
+    text-shadow: 12px 12px 12px grey;
+    color:white;
+   text-shadow: 12px 12px 12px grey;
+    font-size: 43px;
+}
+.gamer
+{
+    display:flex;
+    flex-direction: row;
+    gap:5rem;
+}
+#me,#computer
+{
+    border:1px solid black;
+    padding:10px;
+    width:200px;
+    background-color: antiquewhite;
+}
+#statusupdate
+{
+    margin-bottom:3rem;
+    font-size:33px;
+}
+.back
+  {
+    background-image: url('./backgroundrockpaper.jpg');
+    background-size:cover;
+height:800px;
+} 
+@media screen and (max-width:423px) {
+.buttons{
+    display:flex;
+    flex-direction: column;
+}
+.gamer{
+    display:flex;
+    flex-direction: column;
+}
+   
+}
+</style>
+<body>
+    <div class="back">
+    <h1 id="nav"><span style="color:green;">ROCK </span>PAPER <span style="color:BLUE;">SCISSOR </span></h1>
+    <div class="content_body">
+        <!-----------------------buttons------------------------>
+        <div class="buttons">
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissor">SCISSOR</button>
+    </div>
+    <!---------------------------------------------------------SCORE--------------->
+        <div class="scoring">
+            <h1 id="statusupdate">WON</h1>
+            <div class="gamer">
+           <div id="me">
+            <label >Your Choice:</label>
+            <h2 id="choice1">0</h2>
+        </div>
+        <div id="computer">
+            <label>Computer's Choice:</label>
+            <h2 id="choice2">0</h2>
+        </div>
+        </div>
+        <div class="gamer">
+            <label id="me">Your score:<h3 id="urscore"></h3></label>
+            <label id="computer">Comp score:<h3 id="anotherscore"></label></h3></label>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+let choice1=document.getElementById('choice1');
+let choice2=document.getElementById('choice2');
+let btn1=document.getElementById("rock");
+let btn2=document.getElementById("paper");
+let btn3=document.getElementById("scissor");
+let status=document.getElementById("statusupdate");
+let compscore=0;
+let myscore=0;
+let urscore1=document.getElementById("urscore");
+let anotherscore1=document.getElementById("anotherscore");
+
+
+//this is for rock
+
+
+btn1.addEventListener('click',function(){
+choice1.innerHTML='ROCK';
+let a=['ROCK','PAPER','SCISSOR'];
+let kd=Math.floor((Math.random())*a.length);
+if((a[kd]=='ROCK')&&(choice1.innerHTML=='ROCK'))
+{
+    choice2.innerHTML=a[kd];
+    status.innerHTML="DRAW";
+    status.style.color='yellow';
+    
+}
+else if((a[kd]=='PAPER')&&(choice1.innerHTML=='ROCK'))
+{
+    status.innerHTML="COMP WINS";
+    choice2.innerHTML=a[kd];
+    compscore++;
+    status.style.color='red';
+    anotherscore1.innerHTML=compscore;
+}
+else
+{
+    status.innerHTML="YOU WIN";
+    choice2.innerHTML=a[kd];
+    myscore++;
+    status.style.color='green';
+    urscore1.innerHTML=myscore;
+}
+});
+
+//this is for paper
+btn2.addEventListener('click',function(){
+choice1.innerHTML='PAPER';
+let a=['ROCK','PAPER','SCISSOR'];
+let kd=Math.floor((Math.random())*a.length);
+if((a[kd]=='ROCK')&&(choice1.innerHTML=='PAPER'))
+{
+    choice2.innerHTML=a[kd];
+    status.innerHTML="YOU WIN";
+    myscore++;
+    status.style.color='green';
+    urscore1.innerHTML=myscore;
+    
+}
+else if((a[kd]=='PAPER')&&(choice1.innerHTML=='PAPER'))
+{
+
+    status.innerHTML="DRAW";
+    choice2.innerHTML=a[kd];
+    status.style.color='yellow';
+}
+else
+{
+    status.innerHTML="COMP WINS";
+    choice2.innerHTML=a[kd];
+    compscore++;
+    status.style.color='red';
+    anotherscore1.innerHTML=compscore;
+
+    
+}
+});
+
+
+
+//this is for scissor
+btn3.addEventListener('click',function(){
+choice1.innerHTML='SCISSOR';
+let a=['ROCK','PAPER','SCISSOR'];
+let kd=Math.floor((Math.random())*a.length);
+if((a[kd]=='ROCK')&&(choice1.innerHTML=='SCISSOR'))
+{
+    choice2.innerHTML=a[kd];
+    status.innerHTML="COMP WINS";
+    status.style.color='red';
+    compscore++;
+    anotherscore1.innerHTML=compscore;
+   
+    
+}
+else if((a[kd]=='PAPER')&&(choice1.innerHTML=='SCISSOR'))
+{
+    status.innerHTML="YOU WIN";
+    choice2.innerHTML=a[kd];
+    myscore++;
+    status.style.color='green';
+    urscore1.innerHTML=myscore;
+   }
+else
+{
+
+    status.innerHTML="DRAW";
+    choice2.innerHTML=a[kd];  
+    status.style.color='yellow';
+}
+})
+
+    </script>
+</html>
